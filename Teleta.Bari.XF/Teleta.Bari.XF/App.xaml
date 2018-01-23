@@ -5,7 +5,7 @@
     <Application.Resources>
 
         <ResourceDictionary>
-            <Color x:Key="MainColor">#ED91F5</Color>
+            <Color x:Key="MainColor">#EDBFF5</Color>
             <x:String x:Key="TitleApp">Teleta Manager App</x:String>
 
 

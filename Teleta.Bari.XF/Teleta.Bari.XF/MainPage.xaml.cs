@@ -14,6 +14,8 @@ namespace Teleta.Bari.XF
         {
             InitializeComponent();
 
+            //Device.OnPlatform()
+
 #if DEBUG
             this.Username.Text = "teleta";
             this.Password.Text = "bari";
@@ -44,6 +46,13 @@ namespace Teleta.Bari.XF
             }
             else
             {
+                // Risorsa globale (App.xaml)
+                Style s1 = Application.Current.Resources["btnBase"] as Style;
+                s1.Setters[0].Value = new Color(56, 255, 0);
+                this.btnLogin.BackgroundColor = new Color(56, 255, 0);
+
+                Style s2 = this.Resources["Xamarin.Forms.Label"] as Style;
+
                 // MessageBox di errore
                 await this.DisplayAlert("Login", "Login fallito!", "Ok");
             }

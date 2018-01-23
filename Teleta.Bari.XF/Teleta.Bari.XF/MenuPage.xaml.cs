@@ -17,8 +17,20 @@ namespace Teleta.Bari.XF
             InitializeComponent();
         }
 
-        private void Load_Clicked(object sender, EventArgs e)
+        private async void Load_Clicked(object sender, EventArgs e)
         {
+            string endpoint = "http://www.mioserver.com";
+
+            string platform = Device.RuntimePlatform;
+
+            Device.OnPlatform(
+                () => { endpoint += "/ios"; },
+                () => { endpoint += "/android"; },
+                () => { endpoint += "/windows"; });
+
+            await this.DisplayAlert("Url", endpoint, "OK");
+
+
             FakeRepository repo = new FakeRepository();
             var list = repo.Read();
             this.lstArticles.ItemsSource = list;

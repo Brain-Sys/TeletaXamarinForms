@@ -6,9 +6,31 @@
              Title="{StaticResource TitleApp}"
              BackgroundColor="{StaticResource MainColor}">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Gray" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <StackLayout HorizontalOptions="Fill"
                  VerticalOptions="Center"
                  Margin="32,0,32,0">
+
+
+
+        <Label>
+            <Label.Text>
+                <OnPlatform x:TypeArguments="x:String"
+                            Android="mi trovo sotto Android"
+                            WinPhone="Benvenuto in Windows" />
+            </Label.Text>
+        </Label>
+        
+        
+        
         <Label Text="Nome Utente" />
         <Entry Placeholder="inserisci il tuo nome-utente"
                PlaceholderColor="#55FF0000"
@@ -17,7 +39,7 @@
         <Entry x:Name="Password" IsPassword="True" />
         <Button x:Name="btnLogin" Text="Login"
                  Clicked="faiLogin" HorizontalOptions="Center"
-                Style="{StaticResource btnBase}"/>
+                Style="{DynamicResource btnBase}"/>
         <!--<Button Text="Login"
                  Clicked="faiLogin" HorizontalOptions="Center"
                 Style="{StaticResource btnBaseBigger}"/>-->

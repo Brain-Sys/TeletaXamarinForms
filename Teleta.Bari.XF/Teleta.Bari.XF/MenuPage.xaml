@@ -1,7 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Teleta.Bari.XF.MenuPage">
+             x:Class="Teleta.Bari.XF.MenuPage"
+              Padding="0">
+
+    <CarouselPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                    iOS="0,32,0,0">
+            
+        </OnPlatform>
+    </CarouselPage.Padding>
 
     <CarouselPage.Resources>
         <ResourceDictionary>
@@ -29,6 +37,8 @@
             </DataTemplate>
         </ResourceDictionary>
     </CarouselPage.Resources>
+    
+    
     
     
     
