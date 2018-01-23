@@ -53,5 +53,10 @@ namespace Teleta.Bari.XF
             var i1 = e.SelectedItem;
             var i2 = this.lstArticles.SelectedItem;
         }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            // Tap = 2
+        }
     }
 }
