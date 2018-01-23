@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CarouselPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Teleta.Bari.XF.MenuPage">
+
+    <CarouselPage.Resources>
+        <ResourceDictionary>
+            <!-- oggetti di ogni tipo -->
+            <DataTemplate x:Key="TemplateArticle">
+                <ViewCell>
+                    <Grid HorizontalOptions="Fill">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Orientation="Horizontal"
+                                             VerticalOptions="Center" Margin="8,0,0,0">
+                            <Label Text="{Binding ID}" VerticalOptions="Center" />
+                            <Entry HorizontalOptions="FillAndExpand"
+                                           Text="{Binding Name}"
+                                           Margin="8,0,0,0" />
+                        </StackLayout>
+
+                        <Button Grid.Column="1" x:Name="Order" Margin="0,0,8,0"
+                                        Text="Ordina" VerticalOptions="Center"
+                                        Clicked="Order_Clicked" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </CarouselPage.Resources>
+    
+    
+    
+    <ContentPage Title="Articoli">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <ListView x:Name="lstArticles" RowHeight="64"
+                      ItemSelected="lstArticles_ItemSelected"
+                      ItemTemplate="{StaticResource TemplateArticle}">
+                <!--<ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid HorizontalOptions="Fill">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Orientation="Horizontal"
+                                             VerticalOptions="Center" Margin="8,0,0,0">
+                                    <Label Text="{Binding ID}" VerticalOptions="Center" />
+                                    <Entry HorizontalOptions="FillAndExpand"
+                                           Text="{Binding Name}"
+                                           Margin="8,0,0,0" />
+                                </StackLayout>
+                                
+                                <Button Grid.Column="1" x:Name="Order" Margin="0,0,8,0"
+                                        Text="Ordina" VerticalOptions="Center"
+                                        Clicked="Order_Clicked" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>-->
+            </ListView>
+            <Button Text="Carica" Grid.Row="1" x:Name="Load" Clicked="Load_Clicked" />
+        </Grid>
+    </ContentPage>
+    <ContentPage Title="Clienti">
+        
+    </ContentPage>
+</CarouselPage>

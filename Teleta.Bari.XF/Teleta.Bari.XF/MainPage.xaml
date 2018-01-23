@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Teleta.Bari.XF"
+             x:Class="Teleta.Bari.XF.MainPage"
+             Title="Teleta - Login">
+
+    <StackLayout HorizontalOptions="Fill"
+                 VerticalOptions="Center"
+                 Margin="32,0,32,0">
+        <Label Text="Nome Utente" />
+        <Entry Placeholder="inserisci il tuo nome-utente"
+               PlaceholderColor="#55FF0000"
+               x:Name="Username" />
+        <Label Text="Password" />
+        <Entry x:Name="Password" IsPassword="True" />
+        <Button x:Name="btnLogin" Text="Login"
+                 Clicked="faiLogin"  />
+        <Switch IsVisible="False" x:Name="Remember"
+                HorizontalOptions="Start"/>
+    </StackLayout>
+
+</ContentPage>
