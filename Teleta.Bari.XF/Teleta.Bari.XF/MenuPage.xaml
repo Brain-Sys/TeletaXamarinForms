@@ -65,7 +65,11 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>-->
             </ListView>
+
+
             <Button Text="Carica" Grid.Row="1" x:Name="Load" Clicked="Load_Clicked" />
+
+
         </Grid>
     </ContentPage>
     <ContentPage Title="Clienti">

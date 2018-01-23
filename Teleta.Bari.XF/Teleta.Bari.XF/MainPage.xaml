@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Teleta.Bari.XF"
              x:Class="Teleta.Bari.XF.MainPage"
-             Title="Teleta - Login">
+             Title="{StaticResource TitleApp}"
+             BackgroundColor="{StaticResource MainColor}">
 
     <StackLayout HorizontalOptions="Fill"
                  VerticalOptions="Center"
@@ -15,7 +16,11 @@
         <Label Text="Password" />
         <Entry x:Name="Password" IsPassword="True" />
         <Button x:Name="btnLogin" Text="Login"
-                 Clicked="faiLogin"  />
+                 Clicked="faiLogin" HorizontalOptions="Center"
+                Style="{StaticResource btnBase}"/>
+        <!--<Button Text="Login"
+                 Clicked="faiLogin" HorizontalOptions="Center"
+                Style="{StaticResource btnBaseBigger}"/>-->
         <Switch IsVisible="False" x:Name="Remember"
                 HorizontalOptions="Start"/>
     </StackLayout>

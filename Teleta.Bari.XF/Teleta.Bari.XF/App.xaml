@@ -2,9 +2,30 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Teleta.Bari.XF.App">
-	<Application.Resources>
+    <Application.Resources>
 
-		<!-- Application resource dictionary -->
+        <ResourceDictionary>
+            <Color x:Key="MainColor">#ED91F5</Color>
+            <x:String x:Key="TitleApp">Teleta Manager App</x:String>
 
-	</Application.Resources>
+
+            <Style x:Key="btnBase" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Red" />
+                <Setter Property="FontSize" Value="50" />
+                <Setter Property="WidthRequest" Value="180.0"></Setter>
+            </Style>
+
+            <Style x:Key="btnBaseBigger" TargetType="Button"
+                   BasedOn="{StaticResource btnBase}">
+                <Setter Property="Scale" Value="1.5" />
+            </Style>
+
+
+
+
+
+
+        </ResourceDictionary>
+
+    </Application.Resources>
 </Application>
