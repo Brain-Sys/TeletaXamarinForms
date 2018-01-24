@@ -46,18 +46,26 @@ namespace Teleta.Bari.ViewModels
         }
 
         public RelayCommand<Article> AddCommand { get; set; }
+        public RelayCommand SaveCommand { get; set; }
 
         public ArticlesViewModel()
         {
             this.AddCommand = new RelayCommand<Article>(AddCommandExecute);
+            this.SaveCommand = new RelayCommand(SaveCommandExecute);
             this.Articles = repo.Read();
             this.Carrello = new ObservableCollection<Article>();
+        }
+
+        private void SaveCommandExecute()
+        {
+            bool ok = repo.Save(this.Articles);
         }
 
         private void AddCommandExecute(Article a)
         {
             if (!this.Carrello.Contains(a))
             {
+                a.Quantity = 1;
                 this.Carrello.Add(a);
             }
             else
@@ -65,6 +73,8 @@ namespace Teleta.Bari.ViewModels
                 int index = this.Carrello.IndexOf(a);
                 this.Carrello[index].Quantity++;
             }
+
+            // Calcolare totale carrello
         }
     }
 }

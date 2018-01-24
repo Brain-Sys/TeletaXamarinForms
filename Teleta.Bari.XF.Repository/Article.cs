@@ -10,14 +10,12 @@ namespace Teleta.Bari.XF.Repository
         public int ID { get; set; }
 
         private double quantity;
+
         public double Quantity
         {
             get { return quantity; }
             set { quantity = value;
-                if (this.PropertyChanged != null)
-                {
-                    this.PropertyChanged(this, new PropertyChangedEventArgs(nameof(Quantity)));
-                }
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Quantity)));
             }
         }
 

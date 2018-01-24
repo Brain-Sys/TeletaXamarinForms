@@ -19,6 +19,8 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
+            <Button Grid.Row="1" HorizontalOptions="Start" Text="Salva"
+                    Command="{Binding SaveCommand}" />
             <Label Grid.Row="1" Text="{Binding Path=Articles.Count}"
                    HorizontalOptions="End" FontSize="Large" Margin="0,0,8,8"
                    />
