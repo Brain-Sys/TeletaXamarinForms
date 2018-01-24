@@ -8,7 +8,18 @@ namespace Teleta.Bari.XF.Repository
     public class Article : INotifyPropertyChanged
     {
         public int ID { get; set; }
-        public double Quantity { get; set; }
+
+        private double quantity;
+        public double Quantity
+        {
+            get { return quantity; }
+            set { quantity = value;
+                if (this.PropertyChanged != null)
+                {
+                    this.PropertyChanged(this, new PropertyChangedEventArgs(nameof(Quantity)));
+                }
+            }
+        }
 
         private string name;
         public string Name

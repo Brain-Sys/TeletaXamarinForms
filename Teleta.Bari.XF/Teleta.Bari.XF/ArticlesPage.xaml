@@ -31,7 +31,8 @@
                             <Grid>
                                 <Label Text="{Binding Name}" />
                                 <Button Text="Aggiungi" HorizontalOptions="End"
-                                        Command="{Binding AddCommand,Source={StaticResource viewmodel}}" />
+                                        Command="{Binding AddCommand,Source={StaticResource viewmodel}}"
+                                        CommandParameter="{Binding}" />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
@@ -42,6 +43,19 @@
     </ContentPage>
     <ContentPage Title="Carrello"
                  BindingContext="{StaticResource viewmodel}">
-
+        <ListView ItemsSource="{Binding Carrello}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Label Text="{Binding Name}" />
+                            <Label Text="{Binding Quantity}" HorizontalOptions="End" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+       
+       
     </ContentPage>
 </TabbedPage>
