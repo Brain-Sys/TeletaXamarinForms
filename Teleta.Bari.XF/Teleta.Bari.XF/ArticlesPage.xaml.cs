@@ -14,7 +14,14 @@ namespace Teleta.Bari.XF
     {
         public ArticlesPage ()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }
