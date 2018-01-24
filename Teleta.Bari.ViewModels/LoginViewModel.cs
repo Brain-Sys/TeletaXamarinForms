@@ -1,5 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using System;
+using Teleta.Bari.ViewModels.Messages;
 using Teleta.Bari.XF.Auth;
 
 namespace Teleta.Bari.ViewModels
@@ -42,14 +45,18 @@ namespace Teleta.Bari.ViewModels
             }
         }
 
+        public RelayCommand LoginCommand { get; set; }
+
         public LoginViewModel()
         {
-            Username = "pippo";
-            Password = "pluto";
+            this.LoginCommand = new RelayCommand(ValidateUser);
+
+            Username = "teleta";
+            Password = "bari";
             Remember = true;
         }
 
-        public void ValidateUser()
+        private void ValidateUser()
         {
             // F11 Step Into
             // F10 Step Over
@@ -57,11 +64,19 @@ namespace Teleta.Bari.ViewModels
 
             if (ok)
             {
+                // Navigazione verso la pagina X
                 Message = "Login riuscito";
+                Messenger.Default.Send<NavigateMessage>(
+                    new NavigateMessage("MenuPage"));
             }
             else
             {
+                // MessageBox
                 Message = "Login fallito";
+                ShowMessage msg = new ShowMessage();
+                msg.Title = "Login";
+                msg.Text = Message;
+                Messenger.Default.Send<ShowMessage>(msg);
             }
         }
     }

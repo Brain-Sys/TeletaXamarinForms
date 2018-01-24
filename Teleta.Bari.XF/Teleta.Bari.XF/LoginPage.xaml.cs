@@ -17,10 +17,11 @@ namespace Teleta.Bari.XF
 			InitializeComponent ();
 		}
 
+        // Non serve
         private void btnLogin_Clicked(object sender, EventArgs e)
         {
             var vm = this.Resources["viewmodel"] as LoginViewModel;
-            vm.ValidateUser();
+            // vm.ValidateUser();
         }
     }
 }

@@ -20,7 +20,8 @@
         <Label Text="Password" />
         <Entry Text="{Binding Path=Password}" IsPassword="True" />
         <Switch IsToggled="{Binding Path=Remember}" />
-        <Button Text="Login" x:Name="btnLogin" Clicked="btnLogin_Clicked" />
+        <!--<Button Text="Login" x:Name="btnLogin" Clicked="btnLogin_Clicked" />-->
+        <Button Text="Login" Command="{Binding LoginCommand}" />
     </StackLayout>
     
 </ContentPage>
