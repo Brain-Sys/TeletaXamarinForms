@@ -23,7 +23,7 @@ namespace Teleta.Bari.XF.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            System.Threading.Thread.Sleep(5000);
+            //System.Threading.Thread.Sleep(5000);
             this.StartActivity(typeof(MainActivity));
         }
     }

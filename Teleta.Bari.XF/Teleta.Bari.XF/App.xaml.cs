@@ -13,8 +13,9 @@ namespace Teleta.Bari.XF
 		{
 			InitializeComponent();
 
-            MainPage = new NavigationPage(new Teleta.Bari.XF.MainPage());
-		}
+            //MainPage = new NavigationPage(new Teleta.Bari.XF.MainPage());
+            MainPage = new NavigationPage(new Teleta.Bari.XF.LoginPage());
+        }
 
 		protected override void OnStart ()
 		{

@@ -81,6 +81,10 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Teleta.Bari.ViewModels\Teleta.Bari.ViewModels.csproj">
+      <Project>{3d8f9878-cd8f-40fa-a117-bfcc20432402}</Project>
+      <Name>Teleta.Bari.ViewModels</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Teleta.Bari.XF.Auth\Teleta.Bari.XF.Auth.csproj">
       <Project>{ea2b25de-526e-41b3-9773-93f925cb4bd9}</Project>
       <Name>Teleta.Bari.XF.Auth</Name>

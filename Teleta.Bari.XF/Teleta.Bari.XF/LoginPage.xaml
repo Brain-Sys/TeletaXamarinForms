@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Teleta.Bari.ViewModels;assembly=Teleta.Bari.ViewModels"
+             x:Class="Teleta.Bari.XF.LoginPage">
+
+    <!--xmlns:vm="using:Teleta.Bari.ViewModels"-->
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:LoginViewModel x:Key="viewmodel" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="Center"
+                 BindingContext="{StaticResource viewmodel}">
+        <Label Text="{Binding Message}" TextColor="Red" FontSize="Large" />
+        <Label Text="Username" />
+        <Entry Text="{Binding Path=Username}" />
+        <Label Text="Password" />
+        <Entry Text="{Binding Path=Password}" IsPassword="True" />
+        <Switch IsToggled="{Binding Path=Remember}" />
+        <Button Text="Login" x:Name="btnLogin" Clicked="btnLogin_Clicked" />
+    </StackLayout>
+    
+</ContentPage>
