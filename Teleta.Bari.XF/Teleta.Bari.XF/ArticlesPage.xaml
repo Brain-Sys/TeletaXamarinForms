@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:vm="clr-namespace:Teleta.Bari.ViewModels;assembly=Teleta.Bari.ViewModels"
+             x:Class="Teleta.Bari.XF.ArticlesPage">
+
+    <TabbedPage.Resources>
+        <ResourceDictionary>
+            <vm:ArticlesViewModel x:Key="viewmodel" />
+        </ResourceDictionary>
+    </TabbedPage.Resources>
+
+    <!--Pages can be added as references or inline-->
+    <ContentPage Title="Articoli"
+                 BindingContext="{StaticResource viewmodel}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="1" Text="{Binding Path=Articles.Count}"
+                   HorizontalOptions="End" FontSize="Large" Margin="0,0,8,8"
+                   />
+
+            <ListView ItemsSource="{Binding Path=Articles}"
+                      SelectedItem="{Binding Articolo}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Label Text="{Binding Name}" />
+                                <Button Text="Aggiungi" HorizontalOptions="End"
+                                        Command="{Binding AddCommand,Source={StaticResource viewmodel}}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+    </ContentPage>
+    <ContentPage Title="Carrello"
+                 BindingContext="{StaticResource viewmodel}">
+
+    </ContentPage>
+</TabbedPage>

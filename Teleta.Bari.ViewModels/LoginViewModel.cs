@@ -67,7 +67,7 @@ namespace Teleta.Bari.ViewModels
                 // Navigazione verso la pagina X
                 Message = "Login riuscito";
                 Messenger.Default.Send<NavigateMessage>(
-                    new NavigateMessage("MenuPage"));
+                    new NavigateMessage("ArticlesPage"));
             }
             else
             {
