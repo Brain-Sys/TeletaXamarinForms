@@ -16,10 +16,6 @@ namespace Teleta.Bari.XF
         public ArticlesPage()
         {
             InitializeComponent();
-            var vm = this.Resources["viewmodel"] as ArticlesViewModel;
-
-            IPath p = DependencyService.Get<IPath>();
-            vm.Repo.ConnectionString = p.GetLocalPath();
         }
     }
 }

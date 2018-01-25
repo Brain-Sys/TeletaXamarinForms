@@ -11,8 +11,7 @@ namespace Teleta.Bari.XF.Droid.Interfaces
     {
         public string GetLocalPath()
         {
-            string str = (string)Android.OS.Environment.ExternalStorageDirectory;
-            //str = Path.Combine(str, "Android/Teleta.db");
+            string str = (string)Android.OS.Environment.ExternalStorageDirectory + "/";
 
             return str;
         }

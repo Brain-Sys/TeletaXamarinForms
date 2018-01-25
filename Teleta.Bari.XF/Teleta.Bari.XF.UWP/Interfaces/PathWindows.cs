@@ -11,7 +11,7 @@ namespace Teleta.Bari.XF.UWP.Interfaces
     {
         public string GetLocalPath()
         {
-            string str = ApplicationData.Current.LocalFolder.Path;
+            string str = ApplicationData.Current.LocalFolder.Path + @"\";
             return str;
         }
     }

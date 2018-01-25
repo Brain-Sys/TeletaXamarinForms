@@ -11,9 +11,6 @@ namespace Teleta.Bari.ViewModels
     public class ArticlesViewModel : ViewModelBase
     {
         // Field
-        public FakeRepository Repo = new FakeRepository();
-
-        // Field
         private List<Article> articles;
 
         // Property
@@ -56,13 +53,13 @@ namespace Teleta.Bari.ViewModels
         {
             this.AddCommand = new RelayCommand<Article>(AddCommandExecute);
             this.SaveCommand = new RelayCommand(SaveCommandExecute);
-            this.Articles = this.Repo.Read();
+            this.Articles = FakeRepository.Read();
             this.Carrello = new ObservableCollection<Article>();
         }
 
         private void SaveCommandExecute()
         {
-            bool ok = this.Repo.Save(this.Articles);
+            bool ok = FakeRepository.Save(this.Articles);
         }
 
         private void AddCommandExecute(Article a)

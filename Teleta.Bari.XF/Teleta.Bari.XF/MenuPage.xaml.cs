@@ -30,9 +30,7 @@ namespace Teleta.Bari.XF
 
             await this.DisplayAlert("Url", endpoint, "OK");
 
-
-            FakeRepository repo = new FakeRepository();
-            var list = repo.Read();
+            var list = FakeRepository.Read();
             this.lstArticles.ItemsSource = list;
         }
 

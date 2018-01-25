@@ -1,44 +1,55 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace Teleta.Bari.XF.Repository
 {
-    public class FakeRepository
+    public static class FakeRepository
     {
-        public string ConnectionString { get; set; }
+        public static string ConnectionString { get; set; }
 
-        public List<Article> Read()
+        static FakeRepository()
         {
-            Random rnd = new Random((int)DateTime.Now.Ticks);
-            List<Article> result = new List<Article>();
 
-            int count = rnd.Next(100, 500);
-            for (int i = 0; i < count; i++)
-            {
-                Article a = new Article();
-                a.ID = rnd.Next(1, 1000);
-                a.Quantity = rnd.Next(87, 191);
-                a.Name = string.Concat("Nome Art. ", a.ID);
+        }
 
-                result.Add(a);
-            }
+        public static List<Article> Read()
+        {
+            string filename = string.Concat(ConnectionString, "Teleta.db");
+            var conn = new SQLite.SQLiteConnection(filename);
+
+            var result = conn.Table<Article>().ToList();
+
+            //Random rnd = new Random((int)DateTime.Now.Ticks);
+            //List<Article> result = new List<Article>();
+
+            //int count = rnd.Next(100, 500);
+            //for (int i = 0; i < count; i++)
+            //{
+            //    Article a = new Article();
+            //    a.ID = rnd.Next(1, 1000);
+            //    a.Quantity = rnd.Next(87, 191);
+            //    a.Name = string.Concat("Nome Art. ", a.ID);
+
+            //    result.Add(a);
+            //}
 
             return result;
         }
 
-        public bool Save(List<Article> articles)
+        public static bool Save(List<Article> articles)
         {
-            string filename = string.Concat(this.ConnectionString, "/Teleta.db");
+            string filename = string.Concat(ConnectionString, "Teleta.db");
             var conn = new SQLite.SQLiteConnection(filename);
 
             try
             {
                 conn.CreateTable<Article>();
-
-                foreach (var item in articles)
-                {
-                    conn.Insert(item);
-                }
+                conn.InsertAll(articles);
+                //foreach (var item in articles)
+                //{
+                //    conn.Insert(item);
+                //}
             }
             catch (Exception ex)
             {
