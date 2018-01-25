@@ -18,7 +18,8 @@ namespace Teleta.Bari.XF.Repository
             string filename = string.Concat(ConnectionString, "Teleta.db");
             var conn = new SQLite.SQLiteConnection(filename);
 
-            var result = conn.Table<Article>().ToList();
+            //var result = conn.Table<Article>().ToList();
+            var result = new List<Article>();
 
             //Random rnd = new Random((int)DateTime.Now.Ticks);
             //List<Article> result = new List<Article>();

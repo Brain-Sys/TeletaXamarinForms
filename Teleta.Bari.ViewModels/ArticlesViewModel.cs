@@ -5,16 +5,17 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using Teleta.Bari.XF.Repository;
+using System.Linq;
 
 namespace Teleta.Bari.ViewModels
 {
     public class ArticlesViewModel : ViewModelBase
     {
         // Field
-        private List<Article> articles;
+        private ObservableCollection<Article> articles;
 
         // Property
-        public List<Article> Articles
+        public ObservableCollection<Article> Articles
         {
             get { return articles; }
             set
@@ -46,24 +47,37 @@ namespace Teleta.Bari.ViewModels
             }
         }
 
+        public RelayCommand AddNewArticleCommand { get; set; }
         public RelayCommand<Article> AddCommand { get; set; }
         public RelayCommand SaveCommand { get; set; }
 
         public ArticlesViewModel()
         {
             this.AddCommand = new RelayCommand<Article>(AddCommandExecute);
+            this.AddNewArticleCommand = new RelayCommand(AddNewArticleCommandExecute);
             this.SaveCommand = new RelayCommand(SaveCommandExecute);
-            this.Articles = FakeRepository.Read();
+            this.Articles = new ObservableCollection<Article>(FakeRepository.Read());
             this.Carrello = new ObservableCollection<Article>();
+        }
+
+        private void AddNewArticleCommandExecute()
+        {
+            Article a = new Article();
+            a.ID = 0;
+            a.Name = "nome articolo";
+            a.Quantity = 1;
+            this.Articles.Insert(0, a);
         }
 
         private void SaveCommandExecute()
         {
-            bool ok = FakeRepository.Save(this.Articles);
+            bool ok = FakeRepository.Save(this.Articles.ToList());
         }
 
         private void AddCommandExecute(Article a)
         {
+            if (a == null) return;
+
             if (!this.Carrello.Contains(a))
             {
                 a.Quantity = 1;
