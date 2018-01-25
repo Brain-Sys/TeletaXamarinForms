@@ -25,6 +25,19 @@
                     Command="{Binding AddNewArticleCommand}" />
                 <Button HorizontalOptions="Start" Text="Salva"
                     Command="{Binding SaveCommand}" />
+
+
+
+                <Label HorizontalOptions="Start" Text="Reset" VerticalOptions="Center" FontSize="30"
+                       TextColor="Red" FontAttributes="Bold">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="2"
+                                              Command="{Binding ClearArticlesCommand,Source={StaticResource viewmodel}}"
+                                               />
+                    </Label.GestureRecognizers>
+                </Label>
+
+
             </StackLayout>
 
             <Label Grid.Row="1" Text="{Binding Path=Articles.Count}"

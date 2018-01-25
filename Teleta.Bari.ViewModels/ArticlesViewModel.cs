@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using System.Text;
 using Teleta.Bari.XF.Repository;
 using System.Linq;
+using Teleta.Bari.ViewModels.Messages;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace Teleta.Bari.ViewModels
 {
@@ -50,14 +52,34 @@ namespace Teleta.Bari.ViewModels
         public RelayCommand AddNewArticleCommand { get; set; }
         public RelayCommand<Article> AddCommand { get; set; }
         public RelayCommand SaveCommand { get; set; }
+        public RelayCommand ClearArticlesCommand { get; set; }
 
         public ArticlesViewModel()
         {
             this.AddCommand = new RelayCommand<Article>(AddCommandExecute);
             this.AddNewArticleCommand = new RelayCommand(AddNewArticleCommandExecute);
             this.SaveCommand = new RelayCommand(SaveCommandExecute);
+            this.ClearArticlesCommand = new RelayCommand(ClearArticlesCommandExecute);
             this.Articles = new ObservableCollection<Article>(FakeRepository.Read());
             this.Carrello = new ObservableCollection<Article>();
+        }
+
+        private void ClearArticlesCommandExecute()
+        {
+            QuestionMessage msg = new QuestionMessage();
+            msg.Cancel = "No";
+            msg.Ok = "Sì";
+            msg.Text = "Sei sicuro?";
+            msg.Title = "Conferma!";
+            //msg.Yes = cosaFareInCasoDiSì;
+            msg.Yes = () => { this.Articles.Clear(); };
+
+            Messenger.Default.Send<QuestionMessage>(msg);
+        }
+
+        private void cosaFareInCasoDiSì()
+        {
+            this.Articles.Clear();
         }
 
         private void AddNewArticleCommandExecute()

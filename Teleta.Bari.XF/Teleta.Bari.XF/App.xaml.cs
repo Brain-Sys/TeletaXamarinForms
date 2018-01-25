@@ -21,9 +21,25 @@ namespace Teleta.Bari.XF
 
             Messenger.Default.Register<ShowMessage>(this, showMsg);
             Messenger.Default.Register<NavigateMessage>(this, navigate);
+            Messenger.Default.Register<QuestionMessage>(this, askToTheUser);
 
             //MainPage = new NavigationPage(new Teleta.Bari.XF.MainPage());
             MainPage = new NavigationPage(new Teleta.Bari.XF.LoginPage());
+        }
+
+        private async void askToTheUser(QuestionMessage obj)
+        {
+            bool accept = await Application.Current.MainPage.DisplayAlert
+                (obj.Title, obj.Text, obj.Ok, obj.Cancel);
+
+            if (accept)
+            {
+                obj.Yes?.Invoke();
+            }
+            else
+            {
+                obj.No?.Invoke();
+            }
         }
 
         private async void navigate(NavigateMessage obj)
