@@ -28,8 +28,15 @@ namespace Teleta.Bari.XF.UWP
         /// </summary>
         public App()
         {
+            this.UnhandledException += App_UnhandledException;
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+        }
+
+        private void App_UnhandledException(object sender, Windows.UI.Xaml.UnhandledExceptionEventArgs e)
+        {
+            Exception ex = e.Exception;
+            e.Handled = true;
         }
 
         /// <summary>

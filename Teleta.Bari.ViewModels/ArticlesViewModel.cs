@@ -72,7 +72,10 @@ namespace Teleta.Bari.ViewModels
             msg.Text = "Sei sicuro?";
             msg.Title = "Conferma!";
             //msg.Yes = cosaFareInCasoDiSì;
-            msg.Yes = () => { this.Articles.Clear(); };
+            msg.Yes = () => {
+                FakeRepository.Clear();
+                this.Articles.Clear();
+            };
 
             Messenger.Default.Send<QuestionMessage>(msg);
         }

@@ -70,11 +70,18 @@ namespace Teleta.Bari.XF.Repository
 
             }
 
-            conn.Close();
-            conn.Dispose();
-            conn = null;
+            //conn.Close();
+            //conn.Dispose();
+            //conn = null;
 
             return true;
+        }
+
+        public static int Clear()
+        {
+            int records = conn.DeleteAll<Article>();
+            //int records = conn.Execute("DELETE FROM Article");
+            return records;
         }
 
         private static void controlloSql(string sql)
