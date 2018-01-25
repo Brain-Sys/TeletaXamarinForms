@@ -46,6 +46,7 @@ namespace Teleta.Bari.ViewModels
             {
                 articolo = value;
                 base.RaisePropertyChanged();
+                gotoArticleDetail();
             }
         }
 
@@ -62,6 +63,13 @@ namespace Teleta.Bari.ViewModels
             this.ClearArticlesCommand = new RelayCommand(ClearArticlesCommandExecute);
             this.Articles = new ObservableCollection<Article>(FakeRepository.Read());
             this.Carrello = new ObservableCollection<Article>();
+        }
+
+        private void gotoArticleDetail()
+        {
+            NavigateMessage msg = new NavigateMessage("ArticleDetailPage");
+            msg.Parameter = this.Articolo;
+            Messenger.Default.Send<NavigateMessage>(msg);
         }
 
         private void ClearArticlesCommandExecute()

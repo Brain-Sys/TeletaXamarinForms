@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Teleta.Bari.ViewModels;assembly=Teleta.Bari.ViewModels"
+             x:Class="Teleta.Bari.XF.ArticleDetailPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:ArticleDetailViewModel x:Key="viewmodel" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout BindingContext="{StaticResource viewmodel}">
+        <Label Text="{Binding Article.Name}" FontSize="48" />
+        <Button  Text="Parla!" Command="{Binding SpeakCommand}" />
+    </StackLayout>
+    
+</ContentPage>

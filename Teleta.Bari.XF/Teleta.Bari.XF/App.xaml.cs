@@ -50,11 +50,22 @@ namespace Teleta.Bari.XF
 
             if (type != null)
             {
-                Page page = Activator.CreateInstance(type) as Page;
+                Page page = null;
+
+                if (obj.Parameter == null)
+                {
+                    // Ctor parameter-less
+                    page = Activator.CreateInstance(type) as Page;
+                }
+                else
+                {
+                    // Cerca un ctor che abbia un parametro in input
+                    page = Activator.CreateInstance(type, obj.Parameter) as Page;
+                }
 
                 if (page != null)
                 {
-                    await Application.Current.MainPage.Navigation.PushModalAsync(page);
+                    await Application.Current.MainPage.Navigation.PushAsync(page);
                 }
             }
         }
