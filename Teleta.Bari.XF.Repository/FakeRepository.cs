@@ -18,8 +18,20 @@ namespace Teleta.Bari.XF.Repository
             string filename = string.Concat(ConnectionString, "Teleta.db");
             var conn = new SQLite.SQLiteConnection(filename);
 
-            //var result = conn.Table<Article>().ToList();
-            var result = new List<Article>();
+            var result = conn.Table<Article>().ToList();
+
+
+
+            var proiezioneArticoli = conn.Table<Article>().Select(a => new SmallArticle
+            {
+                id = a.ID,
+                quantita_a_magazzino = a.Quantity
+            });
+
+
+
+
+            //var result = new List<Article>();
 
             //Random rnd = new Random((int)DateTime.Now.Ticks);
             //List<Article> result = new List<Article>();
@@ -46,6 +58,7 @@ namespace Teleta.Bari.XF.Repository
             try
             {
                 conn.CreateTable<Article>();
+
                 conn.InsertAll(articles);
                 //foreach (var item in articles)
                 //{

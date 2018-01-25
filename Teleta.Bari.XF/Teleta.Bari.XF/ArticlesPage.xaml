@@ -37,7 +37,9 @@
                     <DataTemplate>
                         <ViewCell>
                             <Grid>
-                                <Label Text="{Binding Name}" />
+                                <Entry Text="{Binding Name}" />
+                                <Stepper Minimum="0" Maximum="400" HorizontalOptions="Center"
+                                         Value="{Binding Quantity}" />
                                 <Button Text="Aggiungi" HorizontalOptions="End"
                                         Command="{Binding AddCommand,Source={StaticResource viewmodel}}"
                                         CommandParameter="{Binding}" />

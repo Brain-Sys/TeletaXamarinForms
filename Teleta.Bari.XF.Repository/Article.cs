@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -7,10 +8,12 @@ namespace Teleta.Bari.XF.Repository
 {
     public class Article : INotifyPropertyChanged
     {
+        [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
 
         private double quantity;
 
+        [Column("Qty")]
         public double Quantity
         {
             get { return quantity; }
