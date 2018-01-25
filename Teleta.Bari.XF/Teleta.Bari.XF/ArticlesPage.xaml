@@ -50,10 +50,19 @@
                     <DataTemplate>
                         <ViewCell>
                             <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
                                 <Entry Text="{Binding Name}" />
-                                <Stepper Minimum="0" Maximum="400" HorizontalOptions="Center"
+                                <Stepper Minimum="0" Maximum="400" Grid.Column="1"
                                          Value="{Binding Quantity}" />
-                                <Button Text="Aggiungi" HorizontalOptions="End"
+                                <Entry MinimumWidthRequest="50"
+                                       Grid.Column="2" Text="{Binding Quantity}" />
+                                <Button Text="Aggiungi" Grid.Column="3"
+                                        IsVisible="{Binding CanAddInTheBasket}"
                                         Command="{Binding AddCommand,Source={StaticResource viewmodel}}"
                                         CommandParameter="{Binding}" />
                             </Grid>

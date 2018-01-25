@@ -19,6 +19,7 @@ namespace Teleta.Bari.XF.Repository
             get { return quantity; }
             set { quantity = value;
                 this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Quantity)));
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(CanAddInTheBasket)));
             }
         }
 
@@ -32,6 +33,14 @@ namespace Teleta.Bari.XF.Repository
                 {
                     this.PropertyChanged(this, new PropertyChangedEventArgs(nameof(Name)));
                 }
+            }
+        }
+
+        public bool CanAddInTheBasket
+        {
+            get
+            {
+                return this.Quantity > 0;
             }
         }
 
