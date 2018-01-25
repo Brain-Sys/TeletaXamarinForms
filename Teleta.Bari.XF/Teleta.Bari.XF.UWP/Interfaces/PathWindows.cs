@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using Teleta.Bari.Interfaces;
 using Teleta.Bari.XF.Repository;
 using Windows.Storage;
 using Xamarin.Forms;
@@ -11,8 +12,6 @@ namespace Teleta.Bari.XF.UWP.Interfaces
         public string GetLocalPath()
         {
             string str = ApplicationData.Current.LocalFolder.Path;
-            str = Path.Combine(str, "Teleta.db");
-
             return str;
         }
     }

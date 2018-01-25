@@ -1,5 +1,6 @@
 ﻿using Android.OS;
 using System.IO;
+using Teleta.Bari.Interfaces;
 using Teleta.Bari.XF.Repository;
 using Xamarin.Forms;
 
@@ -11,7 +12,7 @@ namespace Teleta.Bari.XF.Droid.Interfaces
         public string GetLocalPath()
         {
             string str = (string)Android.OS.Environment.ExternalStorageDirectory;
-            str = Path.Combine(str, "Android/Teleta.db");
+            //str = Path.Combine(str, "Android/Teleta.db");
 
             return str;
         }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Xamarin.Forms;
 
 namespace Teleta.Bari.XF.Repository
 {
@@ -27,18 +26,18 @@ namespace Teleta.Bari.XF.Repository
 
         public bool Save(List<Article> articles)
         {
-            IPath path = DependencyService.Get<IPath>();
-            var conn = new SQLite.SQLiteConnection(path.GetLocalPath());
-            conn.CreateTable<Article>();
+            //IPath path = DependencyService.Get<IPath>();
+            //var conn = new SQLite.SQLiteConnection(path.GetLocalPath());
+            //conn.CreateTable<Article>();
 
-            foreach (var item in articles)
-            {
-                conn.Insert(item);
-            }
+            //foreach (var item in articles)
+            //{
+            //    conn.Insert(item);
+            //}
 
-            conn.Close();
-            conn.Dispose();
-            conn = null;
+            //conn.Close();
+            //conn.Dispose();
+            //conn = null;
 
             return true;
         }
