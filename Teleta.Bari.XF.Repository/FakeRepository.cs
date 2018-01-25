@@ -5,6 +5,8 @@ namespace Teleta.Bari.XF.Repository
 {
     public class FakeRepository
     {
+        public string ConnectionString { get; set; }
+
         public List<Article> Read()
         {
             Random rnd = new Random((int)DateTime.Now.Ticks);
@@ -26,18 +28,26 @@ namespace Teleta.Bari.XF.Repository
 
         public bool Save(List<Article> articles)
         {
-            //IPath path = DependencyService.Get<IPath>();
-            //var conn = new SQLite.SQLiteConnection(path.GetLocalPath());
-            //conn.CreateTable<Article>();
+            string filename = string.Concat(this.ConnectionString, "/Teleta.db");
+            var conn = new SQLite.SQLiteConnection(filename);
 
-            //foreach (var item in articles)
-            //{
-            //    conn.Insert(item);
-            //}
+            try
+            {
+                conn.CreateTable<Article>();
 
-            //conn.Close();
-            //conn.Dispose();
-            //conn = null;
+                foreach (var item in articles)
+                {
+                    conn.Insert(item);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            conn.Close();
+            conn.Dispose();
+            conn = null;
 
             return true;
         }
