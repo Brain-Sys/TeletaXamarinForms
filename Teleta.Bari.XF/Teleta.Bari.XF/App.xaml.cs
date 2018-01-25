@@ -18,6 +18,7 @@ namespace Teleta.Bari.XF
 
             IPath p = DependencyService.Get<IPath>();
             FakeRepository.ConnectionString = p.GetLocalPath();
+            FakeRepository.StartDb();
 
             Messenger.Default.Register<ShowMessage>(this, showMsg);
             Messenger.Default.Register<NavigateMessage>(this, navigate);

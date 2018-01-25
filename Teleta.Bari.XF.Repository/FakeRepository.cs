@@ -6,30 +6,29 @@ namespace Teleta.Bari.XF.Repository
 {
     public static class FakeRepository
     {
+        private static SQLite.SQLiteConnection conn;
         public static string ConnectionString { get; set; }
 
-        static FakeRepository()
-        {
+        static FakeRepository() { }
 
+        public static void StartDb()
+        {
+            string filename = string.Concat(ConnectionString, "Teleta.db");
+            conn = new SQLite.SQLiteConnection(filename);
+            conn.Tracer = controlloSql;
+            conn.Trace = true;
+            conn.CreateTable<Article>();
         }
 
         public static List<Article> Read()
         {
-            string filename = string.Concat(ConnectionString, "Teleta.db");
-            var conn = new SQLite.SQLiteConnection(filename);
-
             var result = conn.Table<Article>().ToList();
-
-
 
             var proiezioneArticoli = conn.Table<Article>().Select(a => new SmallArticle
             {
                 id = a.ID,
                 quantita_a_magazzino = a.Quantity
             });
-
-
-
 
             //var result = new List<Article>();
 
@@ -52,18 +51,19 @@ namespace Teleta.Bari.XF.Repository
 
         public static bool Save(List<Article> articles)
         {
-            string filename = string.Concat(ConnectionString, "Teleta.db");
-            var conn = new SQLite.SQLiteConnection(filename);
-
             try
             {
-                conn.CreateTable<Article>();
-
-                conn.InsertAll(articles);
-                //foreach (var item in articles)
-                //{
-                //    conn.Insert(item);
-                //}
+                foreach (var item in articles)
+                {
+                    if (item.ID == 0)
+                    {
+                        conn.Insert(item);
+                    }
+                    else
+                    {
+                        conn.Update(item);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -75,6 +75,11 @@ namespace Teleta.Bari.XF.Repository
             conn = null;
 
             return true;
+        }
+
+        private static void controlloSql(string sql)
+        {
+            System.Diagnostics.Debug.WriteLine(sql);
         }
     }
 }
