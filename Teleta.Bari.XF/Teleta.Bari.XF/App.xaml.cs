@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Teleta.Bari.Interfaces;
+using Teleta.Bari.Reporting;
 using Teleta.Bari.ViewModels.Messages;
 using Teleta.Bari.XF.Repository;
 using Xamarin.Forms;
@@ -18,6 +19,7 @@ namespace Teleta.Bari.XF
 
             IPath p = DependencyService.Get<IPath>();
             FakeRepository.ConnectionString = p.GetLocalPath();
+            Report.Folder = p.GetLocalPath();
             FakeRepository.StartDb();
 
             Messenger.Default.Register<ShowMessage>(this, showMsg);

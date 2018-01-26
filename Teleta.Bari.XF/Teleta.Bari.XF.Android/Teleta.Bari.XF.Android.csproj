@@ -92,6 +92,10 @@
       <Project>{d5353238-8039-4e41-81b7-3c85bb4ca8c6}</Project>
       <Name>Teleta.Bari.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Teleta.Bari.Reporting\Teleta.Bari.Reporting.csproj">
+      <Project>{BE046027-E6E0-4C32-BCD5-E2871842C4E6}</Project>
+      <Name>Teleta.Bari.Reporting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Teleta.Bari.ViewModels\Teleta.Bari.ViewModels.csproj">
       <Project>{3d8f9878-cd8f-40fa-a117-bfcc20432402}</Project>
       <Name>Teleta.Bari.ViewModels</Name>

@@ -12,6 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Teleta.Bari.Interfaces\Teleta.Bari.Interfaces.csproj" />
+    <ProjectReference Include="..\Teleta.Bari.Reporting\Teleta.Bari.Reporting.csproj" />
     <ProjectReference Include="..\Teleta.Bari.XF.Auth\Teleta.Bari.XF.Auth.csproj" />
     <ProjectReference Include="..\Teleta.Bari.XF.Repository\Teleta.Bari.XF.Repository.csproj" />
   </ItemGroup>

@@ -27,6 +27,8 @@
                     Command="{Binding AddNewArticleCommand}" />
                 <Button HorizontalOptions="Start" Text="Salva"
                     Command="{Binding SaveCommand}" />
+                <Button HorizontalOptions="Start" Text="Stampa"
+                    Command="{Binding PrintCommand}" />
 
 
 

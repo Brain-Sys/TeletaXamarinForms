@@ -8,6 +8,8 @@ using Teleta.Bari.XF.Repository;
 using System.Linq;
 using Teleta.Bari.ViewModels.Messages;
 using GalaSoft.MvvmLight.Messaging;
+using Teleta.Bari.Reporting;
+using Teleta.Bari.Interfaces;
 
 namespace Teleta.Bari.ViewModels
 {
@@ -54,6 +56,7 @@ namespace Teleta.Bari.ViewModels
         public RelayCommand<Article> AddCommand { get; set; }
         public RelayCommand SaveCommand { get; set; }
         public RelayCommand ClearArticlesCommand { get; set; }
+        public RelayCommand PrintCommand { get; set; }
 
         public ArticlesViewModel()
         {
@@ -61,8 +64,17 @@ namespace Teleta.Bari.ViewModels
             this.AddNewArticleCommand = new RelayCommand(AddNewArticleCommandExecute);
             this.SaveCommand = new RelayCommand(SaveCommandExecute);
             this.ClearArticlesCommand = new RelayCommand(ClearArticlesCommandExecute);
+            this.PrintCommand = new RelayCommand(PrintCommandExecute);
             this.Articles = new ObservableCollection<Article>(FakeRepository.Read());
             this.Carrello = new ObservableCollection<Article>();
+        }
+
+        private void PrintCommandExecute()
+        {
+            foreach (var item in this.Articles)
+            {
+                byte[] pdf = Report.Print(item, $"articolo{item.ID}.pdf");
+            }
         }
 
         private void gotoArticleDetail()
@@ -80,7 +92,8 @@ namespace Teleta.Bari.ViewModels
             msg.Text = "Sei sicuro?";
             msg.Title = "Conferma!";
             //msg.Yes = cosaFareInCasoDiSì;
-            msg.Yes = () => {
+            msg.Yes = () =>
+            {
                 FakeRepository.Clear();
                 this.Articles.Clear();
             };
