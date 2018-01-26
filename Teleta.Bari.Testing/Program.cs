@@ -18,7 +18,7 @@ namespace Teleta.Bari.Testing
             a.Name = "Mouse bluetooth";
             a.Quantity = 981;
 
-            string filename = @"c:\users\igord\desktop\articolo_XX.pdf";
+            string filename = @"c:\users\igord\desktop\articolo.pdf";
             Report.Print(a, filename);
         }
     }
