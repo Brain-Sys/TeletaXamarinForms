@@ -52,7 +52,7 @@ namespace Teleta.Bari.ViewModels
         private async void DownloadCommandExecute()
         {
             string data = this.Date.ToString("yyyyMMdd");
-            string uri = "http://tsdemo.dnsalias.org:5515/ws_logistica.asmx/WS_TSP_Arca_Get_AR_JSON";
+            string uri = "";
             var content = new FormUrlEncodedContent(new[]
             {
                 new KeyValuePair<string, string>("DataLimite", data),
