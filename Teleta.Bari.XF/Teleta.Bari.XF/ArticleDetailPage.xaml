@@ -13,6 +13,7 @@
     <StackLayout BindingContext="{StaticResource viewmodel}">
         <Label Text="{Binding Article.Name}" FontSize="48" />
         <Button  Text="Parla!" Command="{Binding SpeakCommand}" />
+        <Button  Text="Scarica!" Command="{Binding DownloadCommand}" />
     </StackLayout>
     
 </ContentPage>

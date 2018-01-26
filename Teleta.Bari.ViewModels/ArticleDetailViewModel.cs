@@ -1,10 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Newtonsoft.Json;
 using Plugin.TextToSpeech.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
+using System.Xml;
 using Teleta.Bari.XF.Repository;
 
 namespace Teleta.Bari.ViewModels
@@ -34,10 +36,25 @@ namespace Teleta.Bari.ViewModels
             network = new HttpClient();
         }
 
-        private void DownloadCommandExecute()
+        private async void DownloadCommandExecute()
         {
-            string uri = "http://tsdemo.dnsalias.org:5515/ws_logistica.asmx?op=WS_TSP_Arca_Get_AR_JSON";
-            network.PostAsync(uri);
+            string uri = "http://tsdemo.dnsalias.org:5515/ws_logistica.asmx/WS_TSP_Arca_Get_AR_JSON";
+            var content = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("DataLimite", "20000101"),
+                new KeyValuePair<string, string>("ADB", "ADB_DEMO_TPICK_MASTER")
+            });
+
+            HttpResponseMessage response = await network.PostAsync(uri, content);
+            string xml = await response.Content.ReadAsStringAsync();
+
+            if (!string.IsNullOrEmpty(xml))
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(xml);
+                string json = doc.InnerText;
+                AR[] crArticoli = JsonConvert.DeserializeObject<AR[]>(json);
+            }
         }
 
         private async void SpeakCommandExecute()
