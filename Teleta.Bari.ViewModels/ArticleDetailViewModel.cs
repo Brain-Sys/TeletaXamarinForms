@@ -26,11 +26,24 @@ namespace Teleta.Bari.ViewModels
             }
         }
 
+        private DateTime date;
+        public DateTime Date
+        {
+            get { return date; }
+            set
+            {
+                date = value;
+                base.RaisePropertyChanged();
+            }
+        }
+
+
         public RelayCommand SpeakCommand { get; set; }
         public RelayCommand DownloadCommand { get; set; }
 
         public ArticleDetailViewModel()
         {
+            this.Date = new DateTime(2000, 01, 01);
             this.SpeakCommand = new RelayCommand(SpeakCommandExecute);
             this.DownloadCommand = new RelayCommand(DownloadCommandExecute);
             network = new HttpClient();
@@ -38,10 +51,11 @@ namespace Teleta.Bari.ViewModels
 
         private async void DownloadCommandExecute()
         {
+            string data = this.Date.ToString("yyyyMMdd");
             string uri = "http://tsdemo.dnsalias.org:5515/ws_logistica.asmx/WS_TSP_Arca_Get_AR_JSON";
             var content = new FormUrlEncodedContent(new[]
             {
-                new KeyValuePair<string, string>("DataLimite", "20000101"),
+                new KeyValuePair<string, string>("DataLimite", data),
                 new KeyValuePair<string, string>("ADB", "ADB_DEMO_TPICK_MASTER")
             });
 
