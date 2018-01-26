@@ -30,7 +30,9 @@ namespace Teleta.Bari.Reporting
             PdfBrush brush = PdfBrushes.Red;
 
             //bounds
-            RectangleF bounds = new RectangleF(new PointF(10, 10), new SizeF(page.Graphics.ClientSize.Width - 30, page.Graphics.ClientSize.Height - 20));
+            RectangleF bounds = new RectangleF(new PointF(10, 10),
+                new SizeF(page.Graphics.ClientSize.Width - 30,
+                page.Graphics.ClientSize.Height - 20));
 
             //Create a new text elememt
             PdfTextElement element = new PdfTextElement(a.Name, font, brush);
