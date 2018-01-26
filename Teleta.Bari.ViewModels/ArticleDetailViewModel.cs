@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Plugin.TextToSpeech.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Xml;
@@ -40,13 +41,27 @@ namespace Teleta.Bari.ViewModels
 
         public RelayCommand SpeakCommand { get; set; }
         public RelayCommand DownloadCommand { get; set; }
+        public RelayCommand ScanBarcodeCommand { get; set; }
 
         public ArticleDetailViewModel()
         {
             this.Date = new DateTime(2000, 01, 01);
             this.SpeakCommand = new RelayCommand(SpeakCommandExecute);
             this.DownloadCommand = new RelayCommand(DownloadCommandExecute);
+            this.ScanBarcodeCommand = new RelayCommand(ScanBarcodeCommandExecute);
             network = new HttpClient();
+        }
+
+        private async void ScanBarcodeCommandExecute()
+        {
+            var scanner = new ZXing.Mobile.MobileBarcodeScanner();
+
+            var result = await scanner.Scan();
+
+            if (result != null)
+            {
+                Debug.WriteLine("Scanned Barcode: " + result.Text);
+            }
         }
 
         private async void DownloadCommandExecute()
@@ -67,7 +82,9 @@ namespace Teleta.Bari.ViewModels
                 XmlDocument doc = new XmlDocument();
                 doc.LoadXml(xml);
                 string json = doc.InnerText;
-                AR[] crArticoli = JsonConvert.DeserializeObject<AR[]>(json);
+
+                JsonSerializerSettings sett = new JsonSerializerSettings();                
+                Articolo[] crArticoli = JsonConvert.DeserializeObject<Articolo[]>(json, sett);
             }
         }
 

@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using ZXing.Mobile;
 
 namespace Teleta.Bari.XF.UWP
 {
@@ -28,6 +29,7 @@ namespace Teleta.Bari.XF.UWP
         /// </summary>
         public App()
         {
+            //ZXing.Net.Mobile.Forms.WindowsUniversal.ZXingScannerViewRenderer.Init();
             this.UnhandledException += App_UnhandledException;
             this.InitializeComponent();
             this.Suspending += OnSuspending;

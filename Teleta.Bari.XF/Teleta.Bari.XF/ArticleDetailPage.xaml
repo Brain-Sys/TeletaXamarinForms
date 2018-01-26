@@ -15,6 +15,7 @@
         <Button  Text="Parla!" Command="{Binding SpeakCommand}" />
         <DatePicker Date="{Binding Date}" />
         <Button  Text="Scarica!" Command="{Binding DownloadCommand}" />
+        <Button Text="Scan!" Command="{Binding ScanBarcodeCommand}" />
     </StackLayout>
     
 </ContentPage>

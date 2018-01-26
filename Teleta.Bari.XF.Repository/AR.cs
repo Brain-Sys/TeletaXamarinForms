@@ -1,16 +1,21 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Teleta.Bari.XF.Repository
 {
-    public class AR
+    public class Articolo
     {
-        public string cdar { get; set; }
+        [JsonProperty("cdar")]
+        public string CodiceArticolo { get; set; }
 
-        public string ar_descrizione { get; set; }
+        [JsonProperty("ar_descrizione")]
+        public string Descrizione { get; set; }
         public bool matricola_obbligatoria { get; set; }
-        public bool lotto_obbligatorio { get; set; }
+
+        [JsonProperty("lotto_obbligatorio")]
+        public bool LottoObbligatorio { get; set; }
         public string cdum { get; set; }
         public double peso_lordo { get; set; }
         public double peso_netto { get; set; }
